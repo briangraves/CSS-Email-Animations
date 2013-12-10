@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width">
+    <title><%= data.page.title || "CSS Email Animations" %></title>
+
+    <style>
+        <% css_path = sitemap.resources.select { |p| p.source_file.match(/reset[.]css/) }.first %>
+        <%= css_path.render %>
+    </style>
+    <style>
+        <% css_path = sitemap.resources.select { |p| p.source_file.match(/all[.]css[.]scss$/) }.first %>
+        <%= css_path.render %>
+    </style>
+</head>
+
+<body style="background: #f9f9f9;font-family:Arial, Helvetica, sans-serif; font-size:1em;">
+    <table id="backgroundTable" width="100%" cellspacing="0" cellpadding="0" border="0" style="background:#f9f9f9;">
+        <tr>
+            <td class="body" align="center" valign="top" style="background:#f9f9f9;" width="100%">
+                <table cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td class="main" width="600" align="center" style="padding: 20px 0;">
+                            <%= yield %>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

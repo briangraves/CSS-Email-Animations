@@ -1,0 +1,45 @@
+td[class=body] {
+    @media only screen and (max-width: 599px) {
+        padding: 0 1em;
+    }
+}
+@-webkit-keyframes typing {
+    from { width: 0 }
+    to { width: 181px }
+}
+
+@-webkit-keyframes results {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.input div { 
+	font-family: Consolas, monospace;
+    width: 181px;
+    white-space:nowrap;
+    overflow:hidden;
+    -webkit-animation: typing 3s steps(18, end);
+}
+.item {
+	-webkit-animation: results 2s;
+	-webkit-animation-fill-mode: forwards;
+	opacity: 0;
+}
+.item.one {
+	-webkit-animation-delay:.5s;
+}
+.item.two {
+	-webkit-animation-delay:1s;
+}
+.item.three {
+	-webkit-animation-delay:1.5s;
+}
+.item.four {
+	-webkit-animation-delay:2s;
+}
+.item.five {
+	-webkit-animation-delay:2.5s;
+}
+.item.six {
+	-webkit-animation-delay:3s;
+}
