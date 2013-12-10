@@ -1,0 +1,9 @@
+<!--
+%%[
+var @sampleContentArea_header, var @sampleContentArea_image, var @sampleContentArea_url
+set @sampleContentArea_header = "Middleman Responsive Email Template"
+set @sampleContentArea_image = "http://placehold.it/75x75"
+set @sampleContentArea_url = "http://www.google.com"
+]%%
+-->
+%%=ContentAreaByName("Content\Sample Content Area")=%%

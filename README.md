@@ -1,2 +1,2 @@
-CSS-Email-Animations
-====================
+CSS Email Animations
+======
