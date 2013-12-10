@@ -1,41 +1,35 @@
-<%
 
-    ampscript_dir = build_dir + "/ampscript/"
-    ampscript_file = File.basename(current_page.path, '.*')
-    ampscript_doc = "<!--\n%%[\n"
-    page_data = data.template[ampscript_file]
+<!DOCTYPE html>
+<html lang="en">
 
-    if is_building == true && data.template[ampscript_file]
-        
-        i = 0;
-        data.template[ampscript_file].each do |key, value|
-            ampscript_doc += i == 0 ? "" : ", "
-            ampscript_doc += "var @" + ampscript_file + '_' + key
-            i = i + 1
-        end
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width">
+    <title><%= data.page.title || "CSS Email Animations" %></title>
 
-        ampscript_doc += "\n"
+    <style>
+        <% css_path = sitemap.resources.select { |p| p.source_file.match(/reset[.]css/) }.first %>
+        <%= css_path.render %>
+    </style>
+    <style>
+        <% css_path = sitemap.resources.select { |p| p.source_file.match(/all[.]css[.]scss$/) }.first %>
+        <%= css_path.render %>
+    </style>
+</head>
 
-        data.template[ampscript_file].each do |key, value|
-            ampscript_doc += "set @" + ampscript_file + '_' + key + " = \"" + value + "\"\n"
-        end
-    end
-%>
-
-<%= yield %>
-
-<%
-
-    ampscript_doc += "]%%\n-->\n"
-    ampscript_doc += sprintf('%%%%=ContentAreaByName("%s%s")=%%%%', et_content_dir, current_page.data.title)
-
-    unless File.directory?(ampscript_dir)
-        FileUtils.mkdir_p(ampscript_dir)
-    end
-
-    File.open(ampscript_dir + ampscript_file + ".amp", File::WRONLY|File::CREAT) {|f| 
-        f.truncate(0)
-        f.write(ampscript_doc) 
-    }
-
-%>
+<body style="background: #f9f9f9;font-family:Arial, Helvetica, sans-serif; font-size:1em;">
+    <table id="backgroundTable" width="100%" cellspacing="0" cellpadding="0" border="0" style="background:#f9f9f9;">
+        <tr>
+            <td class="body" align="center" valign="top" style="background:#f9f9f9;" width="100%">
+                <table cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td class="main" width="600" align="center" style="padding: 20px 0;">
+                            <%= yield %>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
